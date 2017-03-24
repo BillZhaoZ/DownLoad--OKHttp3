@@ -23,6 +23,7 @@ import static com.bill.download.download.DownloadManager.apkPath;
 
 /**
  * 主界面
+ * 需本地自己搭建TomaCat服务器，具体流程请百度；
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private HorizontalProgressBarWithNumber progress1, progress2, progress3;
     private DownloadInfo info3;
 
+    /**
+     * http://192.168.21.119: 本地电脑主机IP
+     * 8080  端口号
+     */
     private String url1 = "http://192.168.21.119:8080/haha.txt";
     private String url2 = "http://192.168.21.119:8080/18.avi.zip";
     private String url3 = "http://192.168.21.119:8080/qne.apk";
