@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 
 import com.bill.download.R;
 
-
 /**
  * 自定义横向进度条 （仿鸿洋的）
  * Created by Bill on 2017/3/14.
@@ -91,6 +90,12 @@ public class HorizontalProgressBarWithNumber extends ProgressBar {
         mRealWidth = getMeasuredWidth() - getPaddingRight() - getPaddingLeft();
     }
 
+    /**
+     * 测量高度
+     *
+     * @param measureSpec
+     * @return
+     */
     private int measureHeight(int measureSpec) {
         int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
@@ -110,7 +115,7 @@ public class HorizontalProgressBarWithNumber extends ProgressBar {
     }
 
     /**
-     * get the styled attributes
+     * 获取自定义属性
      *
      * @param attrs
      */
@@ -222,6 +227,5 @@ public class HorizontalProgressBarWithNumber extends ProgressBar {
     protected int sp2px(int spVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 spVal, getResources().getDisplayMetrics());
-
     }
 }
