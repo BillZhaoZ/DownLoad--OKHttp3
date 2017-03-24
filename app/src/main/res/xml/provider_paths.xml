@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--root-path  支持SD卡-->
+<paths>
+    <external-path
+        name="my_images"
+        root-path="storage/emulated/0/Download"/>
+</paths>
+
+
