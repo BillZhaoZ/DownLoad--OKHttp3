@@ -5,7 +5,6 @@ import android.app.Application;
 /**
  * 全局通用application
  */
-
 public class MyApplication extends Application {
 
     //全局的Context对象
