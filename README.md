@@ -1,6 +1,6 @@
 # DownLoad--OKHttp3
 
-使用OKHttp3进行下载和断点续传；
+使用OKHttp3进行下载和断点续传；（详细内容，请下载源码）
 
 文件的存储和写入；
 
@@ -32,6 +32,11 @@
 
 集成RXJava和RxAndroid进行线程切换；
 
+      //RxJava和RxAndroid 用来做线程切换的
+       compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+       compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+
+     // 下载
     case R.id.main_btn_down3:
                     DownloadManager.getInstance().download(url3, new DownLoadObserver() {
                         @Override
@@ -59,12 +64,74 @@
                     });
                     break;
 
+     // 取消3
+                case R.id.main_btn_cancel3:
+                    DownloadManager.getInstance().cancel(url3);
+                    progress3.setProgress(0);
+                    // 删除本地文件
+                    DownloadManager.getInstance().deleteFile(info3);
+                    break;
+
+     // 暂停3
+                case R.id.main_btn_pause3:
+                    DownloadManager.getInstance().cancel(url3);
+                    break;
+
 开启java8,使用Lambada表达式简化代码；
 
-    //为了开启Java8
-          jackOptions {
+    apply plugin: 'com.android.application'
+
+    android {
+        compileSdkVersion 24
+        buildToolsVersion "24.0.3"
+
+        defaultConfig {
+            applicationId "com.bill.download"
+            minSdkVersion 15
+            targetSdkVersion 24
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+            //为了开启Java8
+            jackOptions {
                 enabled true;
-          }
+            }
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+
+        //开启Java1.8 能够使用lambda表达式
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+    }
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+
+        compile 'com.android.support:appcompat-v7:24.1.1'
+        testCompile 'junit:junit:4.12'
+
+        //OKHttp
+        compile 'com.squareup.okhttp3:okhttp:3.6.0'
+
+        //RxJava和RxAndroid 用来做线程切换的
+        compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+        compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    }
+
 
 下载完成的安装，增加7.0权限的判定；
 
